@@ -10,11 +10,29 @@
       }
     },
     {
+      "identity" : "category",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jawahendy/Category.git",
+      "state" : {
+        "revision" : "fcbf2100281d85f0bfb0435515aed94f8fb94ac2",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "corepackage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jawahendy/CorePackage.git",
       "state" : {
         "revision" : "2306faedfa14c916c597d070c6ca9a573366099b",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "favorite",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jawahendy/Favorite.git",
+      "state" : {
+        "revision" : "29d1c19e78fa2307334bbc0b9a3f02f169b5db47",
         "version" : "1.0.0"
       }
     }
