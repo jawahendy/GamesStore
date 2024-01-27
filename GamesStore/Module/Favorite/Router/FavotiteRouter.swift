@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import Core
+import Favorite
 
 class FavotiteRouter {
 
-  func makeDetailView(for categoryfavorite: CategoryfavoritModel) -> some View {
-    let detailUseCase = Injection.init().provideDetailFavorite(categoryFav: categoryfavorite)
-      let presenter = FavoriteDetailPresenter(favdetailUseCase: detailUseCase)
-    return FavorDetailView(presenter: presenter)
+  func makeDetailView(for categoryfavorite: CategoryfavoritsModels) -> some View {
+      
+      let categoryFavUseCase: InteractorFavorite<
+        Any,
+        [CategoryfavoritsModels],
+        GetCategoriesFavorRepository<
+          GetCategoriesFavRemoteDataSource,
+          CategoryTransformerFavorite>
+      > = Injection.init().provideCategoryFavorite()
+      
+      let presenter = GetListFavoritePresenter(useCase: categoryFavUseCase)
+      return FavorDetailView(presenter: presenter, category: categoryfavorite)
+      
   }
 
 }

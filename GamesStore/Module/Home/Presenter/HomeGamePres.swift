@@ -59,12 +59,5 @@ class HomePresenter: ObservableObject {
       }
 
 
-  func linkBuilder<Content: View>(
-    for category: CategoryGamesModel,
-    @ViewBuilder content: () -> Content
-  ) -> some View {
-    NavigationLink(
-    destination: router.makeDetailView(for: category)) { content() }
-  }
 
 }

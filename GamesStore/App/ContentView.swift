@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Core
+import Category
+import Favorite
 
 struct ContentView: View {
-    @EnvironmentObject var homePresenter: HomePresenter
-    @EnvironmentObject var favPresenter: FavoritePresenter
+    @EnvironmentObject var homePresenter: GetListPresenter<Any, CategoryGamesModels, AddfavoritModels, Interactor<Any, [CategoryGamesModels], [AddfavoritModels], GetCategoriesRepository<GetCategoriesRemoteDataSource, CategoryTransformer>>>
+    @EnvironmentObject var favPresenter: GetListFavoritePresenter<Any, CategoryfavoritsModels, InteractorFavorite<Any, [CategoryfavoritsModels], GetCategoriesFavorRepository<GetCategoriesFavRemoteDataSource, CategoryTransformerFavorite>>>
     
     var body: some View {
         NavigationStack {

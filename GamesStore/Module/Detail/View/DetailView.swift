@@ -7,14 +7,18 @@
 
 import SwiftUI
 import CoreData
+import Core
+import Category
 
 struct DetailView: View {
-  @ObservedObject var presenter: DetailPresenter
-
+//  @ObservedObject var presenter: DetailPresenter
+    @ObservedObject var presenter: GetListPresenter<Any, CategoryGamesModels, AddfavoritModels,Interactor<Any, [CategoryGamesModels], [AddfavoritModels], GetCategoriesRepository<GetCategoriesRemoteDataSource, CategoryTransformer>>>
+    
+    var category: CategoryGamesModels
 
   var body: some View {
     ZStack {
-      if presenter.loadingState {
+      if presenter.isLoading {
         loadingIndicator
       } else {
         ScrollView(.vertical) {
@@ -43,7 +47,7 @@ extension DetailView {
   }
 
   var imageCategory: some View {
-      AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + self.presenter.category.backdropPath!)) { image in
+      AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + category.backdropPath!)) { image in
       image.resizable()
     } placeholder: {
       ProgressView()
@@ -53,7 +57,7 @@ extension DetailView {
 
   var title: some View {
       HStack {
-          Text(self.presenter.category.originalTitle!)
+          Text(category.originalTitle!)
               .font(.system(size: 20)).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
           Spacer()
       }
@@ -62,14 +66,14 @@ extension DetailView {
   var subContent: some View {
       VStack{
           HStack{
-              Text("Tanggal Release: " + self.presenter.category.releaseDate!)
+              Text("Tanggal Release: " + category.releaseDate!)
                   .font(.system(size: 12)).fontWeight(.light)
               Spacer()
-              Text("Rating: " + String(self.presenter.category.voteAverage!))
+              Text("Rating: " + String(category.voteAverage!))
                   .font(.system(size: 12)).fontWeight(.light)
               Image(systemName: "star.fill").renderingMode(.original).resizable().scaledToFill().frame(width: 15, height: 15).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
           }.padding(.top, 10)
-          Text(self.presenter.category.overview!)
+          Text(category.overview!)
               .font(.system(size: 12)).fontWeight(.light).padding(.top, 20)
       }
     }

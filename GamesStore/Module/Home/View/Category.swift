@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
-
+import Core
+import Category
 
 struct CategoryRow: View {
 
-  var category: CategoryGamesModel
+  var category: CategoryGamesModels
     
   var body: some View {
       VStack {

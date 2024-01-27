@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Core
+import Category
 
 struct HomeView: View {
 
-  @ObservedObject var presenter: HomePresenter
+    @ObservedObject var presenter: GetListPresenter<Any, CategoryGamesModels, AddfavoritModels, Interactor<Any, [CategoryGamesModels], [AddfavoritModels], GetCategoriesRepository<GetCategoriesRemoteDataSource, CategoryTransformer>>>
+
     @State var favorite = ""
 
   var body: some View {
     ZStack {
-      if presenter.loadingState {
+      if presenter.isLoading {
         VStack {
           Text("Loading...")
           ProgressView()
@@ -22,20 +25,20 @@ struct HomeView: View {
       } else {
         ScrollView(.vertical, showsIndicators: false) {
           ForEach(
-            self.presenter.categories,
+            self.presenter.list,
             id: \.id
           ) { category in
               ZStack (alignment: .topTrailing){
-              self.presenter.linkBuilder(for: category) {
+               linkBuilder(for: category) {
                 CategoryRow(category: category)
               }
              Button(action: {
                     if(self.favorite == ""){
                         self.favorite = String(category.id!)
-                        self.presenter.addFavCategories(id: category.id!, fav: true)
+                        self.presenter.Addfavorit(request: nil, id: category.id!, fav: true)
                     } else {
                         self.favorite = ""
-                        self.presenter.addFavCategories(id: category.id!, fav: false)
+                        self.presenter.Addfavorit(request: nil, id: category.id!, fav: false)
                     }
                     
                 }) {
@@ -46,10 +49,20 @@ struct HomeView: View {
         }
       }
     }.onAppear {
-      if self.presenter.categories.count == 0 {
-        self.presenter.getCategories()
-      }
+        if self.presenter.list.count == 0 {
+            self.presenter.getList(request: nil)
+        }
     }
   }
+    
+    func linkBuilder<Content: View>(
+      for category: CategoryGamesModels,
+      @ViewBuilder content: () -> Content
+    ) -> some View {
+
+      NavigationLink(
+        destination: HomeRouter().makeDetailView(for: category)
+      ) { content() }
+    }
 
 }

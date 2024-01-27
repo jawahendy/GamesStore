@@ -7,14 +7,18 @@
 
 import SwiftUI
 import CoreData
+import Favorite
+import Core
 
 struct FavorDetailView: View {
-  @ObservedObject var presenter: FavoriteDetailPresenter
-
+//  @ObservedObject var presenter: FavoriteDetailPresenter
+    @ObservedObject var presenter: GetListFavoritePresenter<Any, CategoryfavoritsModels, InteractorFavorite<Any, [CategoryfavoritsModels], GetCategoriesFavorRepository<GetCategoriesFavRemoteDataSource, CategoryTransformerFavorite>>>
+    
+    var category: CategoryfavoritsModels
 
   var body: some View {
     ZStack {
-      if presenter.loadingState {
+      if presenter.isLoading {
         loadingIndicator
       } else {
         ScrollView(.vertical) {
@@ -43,7 +47,7 @@ extension FavorDetailView {
   }
 
   var imageCategory: some View {
-      AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + self.presenter.category.backdropPath!)) { image in
+      AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original" + category.backdropPath!)) { image in
       image.resizable()
     } placeholder: {
       ProgressView()
@@ -53,7 +57,7 @@ extension FavorDetailView {
 
   var title: some View {
       HStack {
-          Text(self.presenter.category.originalTitle!)
+          Text(category.originalTitle!)
               .font(.system(size: 20)).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
           Spacer()
       }
@@ -62,14 +66,14 @@ extension FavorDetailView {
   var subContent: some View {
       VStack{
           HStack{
-              Text("Tanggal Release: " + self.presenter.category.releaseDate!)
+              Text("Tanggal Release: " + category.releaseDate!)
                   .font(.system(size: 12)).fontWeight(.light)
               Spacer()
-              Text("Rating: " + String(self.presenter.category.voteAverage!))
+              Text("Rating: " + String(category.voteAverage!))
                   .font(.system(size: 12)).fontWeight(.light)
               Image(systemName: "star.fill").renderingMode(.original).resizable().scaledToFill().frame(width: 15, height: 15).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
           }.padding(.top, 10)
-          Text(self.presenter.category.overview!)
+          Text(category.overview!)
               .font(.system(size: 12)).fontWeight(.light).padding(.top, 20)
       }
     }

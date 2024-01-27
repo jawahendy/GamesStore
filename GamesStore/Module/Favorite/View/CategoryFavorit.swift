@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
-
+import Core
+import Category
+import Favorite
 
 struct FavoriteCategoryRow: View {
 
-  var category: CategoryfavoritModel
+  var category: CategoryfavoritsModels
     
   var body: some View {
       VStack {

@@ -6,13 +6,26 @@
 //
 
 import SwiftUI
+import Core
+import Category
+
 
 class HomeRouter {
 
-    func makeDetailView(for category: CategoryGamesModel) -> some View {
-      let detailUseCase = Injection.init().provideDetail(category: category)
-    let presenter = DetailPresenter(detailUseCase: detailUseCase)
-    return DetailView(presenter: presenter)
+  func makeDetailView(for category: CategoryGamesModels) -> some View {
+      
+      let categoryUseCase: Interactor<
+        Any,
+        [CategoryGamesModels],
+        [AddfavoritModels],
+        GetCategoriesRepository<
+          GetCategoriesRemoteDataSource,
+          CategoryTransformer>
+      > = Injection.init().provideCategory()
+
+    let presenter = GetListPresenter(useCase: categoryUseCase)
+
+    return DetailView(presenter: presenter, category: category)
   }
 
 }

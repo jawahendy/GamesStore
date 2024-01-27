@@ -6,8 +6,37 @@
 //
 
 import Foundation
+import Core
+import Category
+import Favorite
 
 final class Injection: NSObject {
+    
+
+func provideCategory<U: UseCase>() -> U where U.Request == Any, U.Response == [CategoryGamesModels] {
+        
+      let remote = GetCategoriesRemoteDataSource(endpoint: Endpoints.Gets.gameList.url)
+      let mapper = CategoryTransformer()
+
+      let repository = GetCategoriesRepository(
+        remoteDataSource: remote,
+        mapper: mapper)
+
+      return Interactor(repository: repository) as! U
+    }
+    
+ func provideCategoryFavorite<U: UseCaseFavorite>() -> U where U.Request == Any, U.Response == [CategoryfavoritsModels] {
+        
+      let remote = GetCategoriesFavRemoteDataSource(endpoint: Endpoints.Gets.favoitlist.url)
+      let mapper = CategoryTransformerFavorite()
+
+
+      let repository = GetCategoriesFavorRepository(
+        remoteDataSource: remote,
+        mapper: mapper)
+
+      return InteractorFavorite(repository: repository) as! U
+    }
 
   private func provideRepository() -> GamesRepositoryProtocol {
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		5610ABDC2B5E5B3E00C2E802 /* FavorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610ABDB2B5E5B3E00C2E802 /* FavorDetailView.swift */; };
 		5610ABDE2B5E5C4100C2E802 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610ABDD2B5E5C4100C2E802 /* FavoriteView.swift */; };
 		5610ABE02B5E5C8200C2E802 /* CategoryFavorit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610ABDF2B5E5C8200C2E802 /* CategoryFavorit.swift */; };
+		56250C592B63980000F4ADF6 /* Favorite in Frameworks */ = {isa = PBXBuildFile; productRef = 56250C582B63980000F4ADF6 /* Favorite */; };
 		5630F1C32B58D8BD00D81D96 /* GamesStoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5630F1C22B58D8BD00D81D96 /* GamesStoreApp.swift */; };
 		5630F1C52B58D8BD00D81D96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5630F1C42B58D8BD00D81D96 /* ContentView.swift */; };
 		5630F1C72B58D8BF00D81D96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5630F1C62B58D8BF00D81D96 /* Assets.xcassets */; };
@@ -37,8 +38,10 @@
 		5630F2072B5901D200D81D96 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5630F2062B5901D200D81D96 /* HomeView.swift */; };
 		5630F2092B5904AE00D81D96 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5630F2082B5904AE00D81D96 /* Category.swift */; };
 		5630F20C2B59276600D81D96 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5630F20B2B59276600D81D96 /* Profile.swift */; };
+		56530A192B64B2BC00C7A1CE /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 56530A182B64B2BC00C7A1CE /* Core */; };
 		56DCDAA02B5A734C0067100B /* Games.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56DCDA9E2B5A734C0067100B /* Games.xcdatamodeld */; };
 		56DCDAA32B5A74370067100B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DCDAA22B5A74370067100B /* CoreDataManager.swift */; };
+		56F1835D2B624B0F001DD0ED /* Category in Frameworks */ = {isa = PBXBuildFile; productRef = 56F1835C2B624B0F001DD0ED /* Category */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +84,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56250C592B63980000F4ADF6 /* Favorite in Frameworks */,
+				56530A192B64B2BC00C7A1CE /* Core in Frameworks */,
 				5630F1E92B58DB8700D81D96 /* Alamofire in Frameworks */,
+				56F1835D2B624B0F001DD0ED /* Category in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +124,7 @@
 			children = (
 				5630F1C12B58D8BD00D81D96 /* GamesStore */,
 				5630F1C02B58D8BD00D81D96 /* Products */,
+				56F1835E2B625D61001DD0ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -374,6 +381,13 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		56F1835E2B625D61001DD0ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -392,6 +406,9 @@
 			name = GamesStore;
 			packageProductDependencies = (
 				5630F1E82B58DB8700D81D96 /* Alamofire */,
+				56F1835C2B624B0F001DD0ED /* Category */,
+				56250C582B63980000F4ADF6 /* Favorite */,
+				56530A182B64B2BC00C7A1CE /* Core */,
 			);
 			productName = GamesStore;
 			productReference = 5630F1BF2B58D8BD00D81D96 /* GamesStore.app */;
@@ -423,6 +440,9 @@
 			mainGroup = 5630F1B62B58D8BD00D81D96;
 			packageReferences = (
 				5630F1E72B58DB8600D81D96 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				56F1835B2B624B0F001DD0ED /* XCLocalSwiftPackageReference "../Modules/Category" */,
+				56250C572B6397FF00F4ADF6 /* XCLocalSwiftPackageReference "../Modules/Favorite" */,
+				56530A152B64B1C600C7A1CE /* XCRemoteSwiftPackageReference "CorePackage" */,
 			);
 			productRefGroup = 5630F1C02B58D8BD00D81D96 /* Products */;
 			projectDirPath = "";
@@ -683,6 +703,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		56250C572B6397FF00F4ADF6 /* XCLocalSwiftPackageReference "../Modules/Favorite" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Modules/Favorite;
+		};
+		56F1835B2B624B0F001DD0ED /* XCLocalSwiftPackageReference "../Modules/Category" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Modules/Category;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		5630F1E72B58DB8600D81D96 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -692,13 +723,34 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		56530A152B64B1C600C7A1CE /* XCRemoteSwiftPackageReference "CorePackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jawahendy/CorePackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		56250C582B63980000F4ADF6 /* Favorite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Favorite;
+		};
 		5630F1E82B58DB8700D81D96 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5630F1E72B58DB8600D81D96 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		56530A182B64B2BC00C7A1CE /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56530A152B64B1C600C7A1CE /* XCRemoteSwiftPackageReference "CorePackage" */;
+			productName = Core;
+		};
+		56F1835C2B624B0F001DD0ED /* Category */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Category;
 		};
 /* End XCSwiftPackageProductDependency section */
 
